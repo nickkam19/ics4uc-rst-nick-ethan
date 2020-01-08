@@ -1,3 +1,4 @@
+package rst;
 
 public class ScoreBoard {
 
