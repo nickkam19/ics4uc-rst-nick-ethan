@@ -34,6 +34,12 @@ public class SpaceDodgers extends Application {
 
 	private Rectangle menu;
 
+	private ImageView enemy1;
+	private ImageView enemy2;
+	private ImageView enemy3;
+	private ImageView enemy4;
+	private ImageView enemy5;
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		launch(args);
@@ -76,7 +82,41 @@ public class SpaceDodgers extends Application {
 		ship.setY(400);
 		ship.setX(350);
 
-		Group root = new Group(back, menu, btnStop, btnStart, btnQuit, ship);
+		URL enemyLocation1 = SpaceDodgers.class.getResource("Enemy.png");
+		enemy1 = new ImageView(enemyLocation1.toString());
+		enemy1.setFitHeight(70);
+		enemy1.setFitWidth(70);
+		enemy1.setX(160);
+		enemy1.setY(0);
+		
+		
+		enemy2 = new ImageView(enemyLocation1.toString());
+		enemy2.setFitHeight(65);
+		enemy2.setFitWidth(65);
+		enemy2.setX(320);
+		enemy2.setY(0);
+		
+		enemy3 = new ImageView(enemyLocation1.toString());
+		enemy3.setFitHeight(65);
+		enemy3.setFitWidth(65);
+		enemy3.setX(480);
+		enemy3.setY(0);
+		
+		enemy4 = new ImageView(enemyLocation1.toString());
+		enemy4.setFitHeight(65);
+		enemy4.setFitWidth(65);
+		enemy4.setX(640);
+		enemy4.setY(0);
+		
+		enemy5 = new ImageView(enemyLocation1.toString());
+		enemy5.setFitHeight(65);
+		enemy5.setFitWidth(65);
+		enemy5.setX(0);
+		enemy5.setY(0);
+	
+		
+		
+		Group root = new Group(back, menu, btnStop, btnStart, btnQuit, ship, enemy1, enemy2, enemy3, enemy4, enemy5);
 
 		Scene myScene = new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT);
 
