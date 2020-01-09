@@ -26,14 +26,12 @@ public class SpaceDodgers extends Application {
 	private static final int SOUTH = -4;
 	private static final int EAST = 4;
 	private static final int WEST = -4;
-	
+
 	private int shipSpeedX = 0;
 	private int shipSpeedY = 0;
-	
-	
-	
+
 	private ImageView ship;
-	
+
 	private Rectangle menu;
 
 	public static void main(String[] args) {
@@ -45,25 +43,25 @@ public class SpaceDodgers extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
-		
-		menu = new Rectangle(0, 700, 800 ,100);
+
+		menu = new Rectangle(0, 700, 800, 100);
 		menu.setFill(Color.DARKGREY);
-		
+
 		Button btnStop = new Button("STOP");
 		btnStop.setFont(Font.font(SML));
 		btnStop.setLayoutX(120);
 		btnStop.setLayoutY(740);
-		
+
 		Button btnStart = new Button("START");
 		btnStart.setFont(Font.font(SML));
 		btnStart.setLayoutX(350);
 		btnStart.setLayoutY(740);
-		
+
 		Button btnQuit = new Button("EXIT");
 		btnQuit.setFont(Font.font(SML));
 		btnQuit.setLayoutX(570);
 		btnQuit.setLayoutY(740);
-		
+
 		URL backLocation = SpaceDodgers.class.getResource("StarBackl.jpg");
 		ImageView back = new ImageView(backLocation.toString());
 		back.setFitHeight(SCREEN_HEIGHT);
@@ -71,7 +69,6 @@ public class SpaceDodgers extends Application {
 		back.setX(0);
 		back.setY(0);
 
-		
 		URL shipLocation = SpaceDodgers.class.getResource("SpaceshipRm.png");
 		ship = new ImageView(shipLocation.toString());
 		ship.setFitHeight(80);
@@ -79,7 +76,6 @@ public class SpaceDodgers extends Application {
 		ship.setY(400);
 		ship.setX(350);
 
-		
 		Group root = new Group(back, menu, btnStop, btnStart, btnQuit, ship);
 
 		Scene myScene = new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -88,47 +84,47 @@ public class SpaceDodgers extends Application {
 		primaryStage.show();
 		primaryStage.setTitle("Space Dodgers");
 
+		myScene.setOnKeyPressed(event -> keyPressed(event));
+		myScene.setOnKeyReleased(event -> keyReleased(event));
 	}
-	class GameTimer extends AnimationTimer{
 
-		@Override
-		public void handle(long now) {
-			
-			Bounds shipBounds = ship.getBoundsInLocal();
-			Bounds menuBounds = menu.getBoundsInLocal();
-			
-			if (shipBounds.intersects(menuBounds)) {
-				
-			
-		}
-		}
-	public void keyPressed(KeyEvent event){
+	public void keyPressed(KeyEvent event) {
 		KeyCode code = event.getCode();
-		
-		if(code == KeyCode.UP || code == KeyCode.W) {
+
+		if (code == KeyCode.UP || code == KeyCode.W) {
 			shipSpeedY = NORTH;
 		}
-		if(code == KeyCode.DOWN) {
+		if (code == KeyCode.DOWN) {
 			shipSpeedY = SOUTH;
 		}
-		if(code == KeyCode.LEFT) {
+		if (code == KeyCode.LEFT) {
 			shipSpeedX = WEST;
 		}
-		if(code == KeyCode.RIGHT) {
+		if (code == KeyCode.RIGHT) {
 			shipSpeedX = EAST;
 		}
 	}
-	
+
 	public void keyReleased(KeyEvent event) {
 		KeyCode code = event.getCode();
 
-        if (code == KeyCode.UP || code == KeyCode.LEFT || 
-                code == KeyCode.DOWN || code == KeyCode.RIGHT) {
-            shipSpeedX = 0;
-            shipSpeedY = 0;
-        }
-    }
-	
-
-}
+		if (code == KeyCode.UP || code == KeyCode.LEFT || code == KeyCode.DOWN || code == KeyCode.RIGHT) {
+			shipSpeedX = 0;
+			shipSpeedY = 0;
+		}
 	}
+
+	class GameTimer extends AnimationTimer {
+
+		@Override
+		public void handle(long now) {
+
+			Bounds shipBounds = ship.getBoundsInLocal();
+			Bounds menuBounds = menu.getBoundsInLocal();
+
+			if (shipBounds.intersects(menuBounds)) {
+
+			}
+		}
+	}
+}
