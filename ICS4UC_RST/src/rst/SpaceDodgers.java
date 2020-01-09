@@ -2,11 +2,15 @@ package rst;
 
 import java.net.URL;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -15,10 +19,13 @@ import javafx.stage.Stage;
 public class SpaceDodgers extends Application {
 
 	// defining global constants and variables
-	static final double SCREEN_WIDTH = 800;
-	static final double SCREEN_HEIGHT = 800;
-	static final int GAP = 15;
-	static final int SML = 15;
+	private static final double SCREEN_WIDTH = 800;
+	private static final double SCREEN_HEIGHT = 800;
+	private static final int SML = 15;
+	
+	private ImageView ship;
+	
+	private Rectangle menu;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -30,7 +37,7 @@ public class SpaceDodgers extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
 		
-		Rectangle menu = new Rectangle(0, 700, 800 ,100);
+		menu = new Rectangle(0, 700, 800 ,100);
 		menu.setFill(Color.DARKGREY);
 		
 		Button btnStop = new Button("STOP");
@@ -57,7 +64,7 @@ public class SpaceDodgers extends Application {
 
 		
 		URL shipLocation = SpaceDodgers.class.getResource("SpaceshipRm.png");
-		ImageView ship = new ImageView(shipLocation.toString());
+		ship = new ImageView(shipLocation.toString());
 		ship.setFitHeight(80);
 		ship.setFitWidth(80);
 		ship.setY(400);
@@ -73,5 +80,42 @@ public class SpaceDodgers extends Application {
 		primaryStage.setTitle("Space Dodgers");
 
 	}
+	class GameTimer extends AnimationTimer{
+
+		@Override
+		public void handle(long now) {
+			
+			Bounds shipBounds = ship.getBoundsInLocal();
+			Bounds menuBounds = menu.getBoundsInLocal();
+			
+		}
+		}
+	public void keyPressed(KeyEvent event){
+		KeyCode code = event.getCode();
+		
+		if(code == KeyCode.UP || code == KeyCode.W) {
+			chickenSpeedY = NORTH;
+		}
+		if(code == KeyCode.DOWN) {
+			chickenSpeedY = SOUTH;
+		}
+		if(code == KeyCode.LEFT) {
+			chickenSpeedX = WEST;
+		}
+		if(code == KeyCode.RIGHT) {
+			chickenSpeedX = EAST;
+		}
+	}
+	
+	public void keyReleased(KeyEvent event) {
+		KeyCode code = event.getCode();
+
+        if (code == KeyCode.UP || code == KeyCode.LEFT || 
+                code == KeyCode.DOWN || code == KeyCode.RIGHT) {
+            chickenSpeedX = 0;
+            chickenSpeedY = 0;
+        }
+    }
+	
 
 }
