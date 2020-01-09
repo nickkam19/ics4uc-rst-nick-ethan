@@ -118,12 +118,20 @@ public class SpaceDodgers extends Application {
 
 		@Override
 		public void handle(long now) {
+			
+			ship.setX(ship.getX() + shipSpeedX);
+			ship.setY(ship.getY() + shipSpeedY);
 
 			Bounds shipBounds = ship.getBoundsInLocal();
 			Bounds menuBounds = menu.getBoundsInLocal();
 
 			if (shipBounds.intersects(menuBounds)) {
-
+				shipSpeedY = 0;
+				shipSpeedX = 0;
+			}
+			if(ship.getX() < 15 || ship.getX() > 780 || ship.getY() > 780) {
+				shipSpeedX = 0;
+				shipSpeedY = 0;
 			}
 		}
 	}
