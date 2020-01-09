@@ -22,6 +22,15 @@ public class SpaceDodgers extends Application {
 	private static final double SCREEN_WIDTH = 800;
 	private static final double SCREEN_HEIGHT = 800;
 	private static final int SML = 15;
+	private static final int NORTH = 4;
+	private static final int SOUTH = -4;
+	private static final int EAST = 4;
+	private static final int WEST = -4;
+	
+	private int shipSpeedX = 0;
+	private int shipSpeedY = 0;
+	
+	
 	
 	private ImageView ship;
 	
@@ -88,22 +97,25 @@ public class SpaceDodgers extends Application {
 			Bounds shipBounds = ship.getBoundsInLocal();
 			Bounds menuBounds = menu.getBoundsInLocal();
 			
+			if (shipBounds.intersects(menuBounds)) {
+				
+			
 		}
 		}
 	public void keyPressed(KeyEvent event){
 		KeyCode code = event.getCode();
 		
 		if(code == KeyCode.UP || code == KeyCode.W) {
-			chickenSpeedY = NORTH;
+			shipSpeedY = NORTH;
 		}
 		if(code == KeyCode.DOWN) {
-			chickenSpeedY = SOUTH;
+			shipSpeedY = SOUTH;
 		}
 		if(code == KeyCode.LEFT) {
-			chickenSpeedX = WEST;
+			shipSpeedX = WEST;
 		}
 		if(code == KeyCode.RIGHT) {
-			chickenSpeedX = EAST;
+			shipSpeedX = EAST;
 		}
 	}
 	
@@ -112,10 +124,11 @@ public class SpaceDodgers extends Application {
 
         if (code == KeyCode.UP || code == KeyCode.LEFT || 
                 code == KeyCode.DOWN || code == KeyCode.RIGHT) {
-            chickenSpeedX = 0;
-            chickenSpeedY = 0;
+            shipSpeedX = 0;
+            shipSpeedY = 0;
         }
     }
 	
 
 }
+	}
