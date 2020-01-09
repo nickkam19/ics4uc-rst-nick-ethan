@@ -169,7 +169,7 @@ public class SpaceDodgers extends Application {
 				shipSpeedY = 0;
 				shipSpeedX = 0;
 			}
-			if(ship.getX() < 15 || ship.getX() > 780 || ship.getY() > 780) {
+			if(ship.getX() < 15 || ship.getX() > 780 || ship.getY() < 15) {
 				shipSpeedX = 0;
 				shipSpeedY = 0;
 			}
