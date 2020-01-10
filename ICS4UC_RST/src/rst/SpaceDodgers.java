@@ -15,7 +15,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import rst.GetToTheOtherSide.GameTimer;
+
+
 
 public class SpaceDodgers extends Application {
 
@@ -28,12 +29,12 @@ public class SpaceDodgers extends Application {
 	private static final int EAST = 4;
 	private static final int WEST = -4;
 	private static final int ENEMY_SPEED = 7;
-	private int shipSpeedX = 2;
+	private int shipSpeedX = 0;
 	private int shipSpeedY = 0;
 	KeyCode code;
 	private ImageView ship;
 
-	private Rectangle menu;
+	private Rectangle menu, userShot;
 
 	private ImageView enemy1;
 	private ImageView enemy2;
@@ -41,7 +42,7 @@ public class SpaceDodgers extends Application {
 	private ImageView enemy4;
 	private ImageView enemy5;
 	private GameTimer timer;
-	
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		launch(args);
@@ -77,7 +78,7 @@ public class SpaceDodgers extends Application {
 		back.setX(0);
 		back.setY(0);
 
-		URL shipLocation = SpaceDodgers.class.getResource("SpaceshipRm.png");
+		URL shipLocation = SpaceDodgers.class.getResource("SpaceShip8.png");
 		ship = new ImageView(shipLocation.toString());
 		ship.setFitHeight(80);
 		ship.setFitWidth(80);
@@ -90,35 +91,34 @@ public class SpaceDodgers extends Application {
 		enemy1.setFitWidth(70);
 		enemy1.setX(160);
 		enemy1.setY(0);
-		
-		
+
 		enemy2 = new ImageView(enemyLocation1.toString());
 		enemy2.setFitHeight(65);
 		enemy2.setFitWidth(65);
 		enemy2.setX(320);
 		enemy2.setY(0);
-		
+
 		enemy3 = new ImageView(enemyLocation1.toString());
 		enemy3.setFitHeight(65);
 		enemy3.setFitWidth(65);
 		enemy3.setX(480);
 		enemy3.setY(0);
-		
+
 		enemy4 = new ImageView(enemyLocation1.toString());
 		enemy4.setFitHeight(65);
 		enemy4.setFitWidth(65);
 		enemy4.setX(640);
 		enemy4.setY(0);
-		
+
 		enemy5 = new ImageView(enemyLocation1.toString());
 		enemy5.setFitHeight(65);
 		enemy5.setFitWidth(65);
 		enemy5.setX(0);
 		enemy5.setY(0);
-	
-		 timer = new GameTimer();
-	        timer.start();
-		
+
+		timer = new GameTimer();
+		timer.start();
+
 		Group root = new Group(back, menu, btnStop, btnStart, btnQuit, ship, enemy1, enemy2, enemy3, enemy4, enemy5);
 
 		Scene myScene = new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -155,37 +155,49 @@ public class SpaceDodgers extends Application {
 			shipSpeedX = 0;
 			shipSpeedY = 0;
 		}
-	}
 
-	class GameTimer extends AnimationTimer {
+		class GameTimer extends AnimationTimer {
 
-		@Override
-		public void handle(long now) {
-			
-			Bounds shipBounds = ship.getBoundsInLocal();
-			Bounds menuBounds = menu.getBoundsInLocal();
-			Bounds enemy1Bounds = enemy1.getBoundsInLocal();
-			Bounds enemy2Bounds = enemy2.getBoundsInLocal();
-			Bounds enemy3Bounds = enemy3.getBoundsInLocal();
-			Bounds enemy4Bounds = enemy4.getBoundsInLocal();
-			Bounds enemy5Bounds = enemy5.getBoundsInLocal();
+			@Override
+			public void handle(long now) {
 
+				Bounds shipBounds = ship.getBoundsInLocal();
+				Bounds menuBounds = menu.getBoundsInLocal();
+				Bounds enemy1Bounds = enemy1.getBoundsInLocal();
+				Bounds enemy2Bounds = enemy2.getBoundsInLocal();
+				Bounds enemy3Bounds = enemy3.getBoundsInLocal();
+				Bounds enemy4Bounds = enemy4.getBoundsInLocal();
+				Bounds enemy5Bounds = enemy5.getBoundsInLocal();
 
-			if(shipBounds.intersects(menuBounds)  && code == KeyCode.DOWN){
-				shipSpeedX = 0;
-				shipSpeedY = 0;
+				if (shipBounds.intersects(menuBounds) && code == KeyCode.DOWN) {
+					shipSpeedX = 0;
+					shipSpeedY = 0;
 
-				}else {
-					
+				} else {
+
 					ship.setX(ship.getX() + shipSpeedX);
 					ship.setY(ship.getY() + shipSpeedY);
 				}
-			
 
-			if(ship.getX() < 15 || ship.getX() > 780 || ship.getY() < 15) {
+				if (ship.getX() <= 15 && code == KeyCode.LEFT) {
 
-				shipSpeedX = 0;
-				shipSpeedY = 0;
+					shipSpeedX = 0;
+					shipSpeedY = 0;
+				}
+				if (ship.getX() >= 780 && code == KeyCode.RIGHT) {
+					shipSpeedX = 0;
+					shipSpeedY = 0;
+				}
+				if (ship.getY() <= 15 && code == KeyCode.UP) {
+					shipSpeedX = 0;
+					shipSpeedY = 0;
+//
+//					if (code == KeyCode.SPACE) {
+//						userShot = new Rectangle(ship.getX(), ship.getY(), 4, 20);
+//						userShot.setFill(Color.ALICEBLUE);
+//						userShot.setY(userShot.getY() + (-5));
+					//}
+				}
 			}
 		}
 	}
