@@ -166,6 +166,7 @@ public class SpaceDodgers extends Application {
 			shipSpeedX = 0;
 			shipSpeedY = 0;
 		}
+	}
 
 		class GameTimer extends AnimationTimer {
 
@@ -241,5 +242,5 @@ public class SpaceDodgers extends Application {
 			
 		}
 	}
-	}
-	}
+}
+	
