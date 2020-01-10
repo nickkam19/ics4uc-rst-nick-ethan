@@ -23,8 +23,8 @@ public class SpaceDodgers extends Application {
 	private static final double SCREEN_WIDTH = 800;
 	private static final double SCREEN_HEIGHT = 800;
 	private static final int SML = 15;
-	private static final int NORTH = 4;
-	private static final int SOUTH = -4;
+	private static final int NORTH = -4;
+	private static final int SOUTH = 4;
 	private static final int EAST = 4;
 	private static final int WEST = -4;
 
