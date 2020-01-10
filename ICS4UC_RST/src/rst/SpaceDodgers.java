@@ -170,14 +170,15 @@ public class SpaceDodgers extends Application {
 			Bounds enemy4Bounds = enemy4.getBoundsInLocal();
 			Bounds enemy5Bounds = enemy5.getBoundsInLocal();
 
-			
-			
-			if(!(shipBounds.intersects(menuBounds)&&code == KeyCode.DOWN)){
-				ship.setX(ship.getX() + shipSpeedX);
-				ship.setY(ship.getY() + shipSpeedY);
+
+			if(shipBounds.intersects(menuBounds)  && code == KeyCode.DOWN){
+				shipSpeedX = 0;
+				shipSpeedY = 0;
+
 				}else {
-					shipSpeedX = 0;
-					shipSpeedY = 0;
+					
+					ship.setX(ship.getX() + shipSpeedX);
+					ship.setY(ship.getY() + shipSpeedY);
 				}
 			
 
