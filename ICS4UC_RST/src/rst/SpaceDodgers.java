@@ -165,18 +165,16 @@ public class SpaceDodgers extends Application {
 			Bounds shipBounds = ship.getBoundsInLocal();
 			Bounds menuBounds = menu.getBoundsInLocal();
 
-			if(!(shipBounds.intersects(menuBounds)&&code == KeyCode.DOWN)){
-				ship.setX(ship.getX() + shipSpeedX);
-				ship.setY(ship.getY() + shipSpeedY);
+			if(shipBounds.intersects(menuBounds)  && code == KeyCode.DOWN){
+				shipSpeedX = 0;
+				shipSpeedY = 0;
 				}else {
-					shipSpeedX = 0;
-					shipSpeedY = 0;
+					
+					ship.setX(ship.getX() + shipSpeedX);
+					ship.setY(ship.getY() + shipSpeedY);
 				}
 			
-//			if (shipBounds.intersects(menuBounds)) {
-//				shipSpeedY = 0;
-//				shipSpeedX = 0;
-//			}
+
 
 			if(ship.getX() < 15 || ship.getX() > 780 || ship.getY() < 15) {
 
