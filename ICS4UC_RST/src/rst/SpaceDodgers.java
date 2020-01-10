@@ -179,62 +179,58 @@ public class SpaceDodgers extends Application {
 				shipSpeedX = 0;
 				shipSpeedY = 0;
 			}
-				if (enemy1.getX() <= 0 || enemy1.getX() >= 775) {
-					enemy1Speed = enemy1Speed * -1;
-				}
-				if (enemy2.getX() <= 0 || enemy2.getX() >= 775) {
-					enemy2Speed = enemy2Speed * -1;
-				}
-				if (enemy3.getX() <= 0 || enemy3.getX() >= 775) {
-					enemy3Speed = enemy3Speed * -1;
-				}
-				if (enemy4.getX() <= 0 || enemy4.getX() >= 775) {
-					enemy4Speed = enemy4Speed * -1;
-				}
-				if (enemy5.getX() <= 0 || enemy5.getX() >= 775) {
-					enemy5Speed = enemy5Speed * -1;
-				}
-				
-				
-				enemy1.setX(enemy1.getX() + enemy1Speed);
-				enemy2.setX(enemy2.getX() + enemy2Speed);
-				enemy3.setX(enemy3.getX() + enemy3Speed);
-				enemy4.setX(enemy4.getX() + enemy4Speed);
-				enemy5.setX(enemy5.getX() + enemy5Speed);
-
-				if (shipBounds.intersects(menuBounds) && code == KeyCode.DOWN) {
-					shipSpeedX = 0;
-					shipSpeedY = 0;
-
-				} else {
-
-					ship.setX(ship.getX() + shipSpeedX);
-					ship.setY(ship.getY() + shipSpeedY);
-				}
-
-				if (ship.getX() <= 15 && code == KeyCode.LEFT) {
-
-					shipSpeedX = 0;
-					shipSpeedY = 0;
-				}
-				if (ship.getX() >= 780 && code == KeyCode.RIGHT) {
-					shipSpeedX = 0;
-					shipSpeedY = 0;
-				}
-				if (ship.getY() <= 15 && code == KeyCode.UP) {
-					shipSpeedX = 0;
-					shipSpeedY = 0;
-				}
-					if (code == KeyCode.SPACE) {
-						userShot = new Rectangle(ship.getX(), ship.getY(), 4, 20);
-						userShot.setFill(Color.ALICEBLUE);
-					userShot.setY(userShot.getY() + (-5));
-					 }
-				}
+			if (enemy1.getX() <= 0 || enemy1.getX() >= 775) {
+				enemy1Speed = enemy1Speed * -1;
+			}
+			if (enemy2.getX() <= 0 || enemy2.getX() >= 775) {
+				enemy2Speed = enemy2Speed * -1;
+			}
+			if (enemy3.getX() <= 0 || enemy3.getX() >= 775) {
+				enemy3Speed = enemy3Speed * -1;
+			}
+			if (enemy4.getX() <= 0 || enemy4.getX() >= 775) {
+				enemy4Speed = enemy4Speed * -1;
+			}
+			if (enemy5.getX() <= 0 || enemy5.getX() >= 775) {
+				enemy5Speed = enemy5Speed * -1;
 			}
 
-		}
-		
-	
-	
+			enemy1.setX(enemy1.getX() + enemy1Speed);
+			enemy2.setX(enemy2.getX() + enemy2Speed);
+			enemy3.setX(enemy3.getX() + enemy3Speed);
+			enemy4.setX(enemy4.getX() + enemy4Speed);
+			enemy5.setX(enemy5.getX() + enemy5Speed);
 
+			if (shipBounds.intersects(menuBounds) && code == KeyCode.DOWN) {
+				shipSpeedX = 0;
+				shipSpeedY = 0;
+
+			} else {
+
+				ship.setX(ship.getX() + shipSpeedX);
+				ship.setY(ship.getY() + shipSpeedY);
+			}
+
+			if (ship.getX() <= 15 && code == KeyCode.LEFT) {
+
+				shipSpeedX = 0;
+				shipSpeedY = 0;
+			}
+			if (ship.getX() >= 780 && code == KeyCode.RIGHT) {
+				shipSpeedX = 0;
+				shipSpeedY = 0;
+			}
+			if (ship.getY() <= 15 && code == KeyCode.UP) {
+				shipSpeedX = 0;
+
+				shipSpeedY = 0;
+			}
+			if (code == KeyCode.SPACE) {
+				userShot = new Rectangle(ship.getX(), ship.getY(), 4, 20);
+				userShot.setFill(Color.ALICEBLUE);
+				userShot.setY(userShot.getY() + (-5));
+			}
+		}
+	}
+
+}
