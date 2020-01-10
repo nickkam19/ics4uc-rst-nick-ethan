@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import rst.GetToTheOtherSide.GameTimer;
 
 public class SpaceDodgers extends Application {
 
@@ -27,7 +28,7 @@ public class SpaceDodgers extends Application {
 	private static final int EAST = 4;
 	private static final int WEST = -4;
 
-	private int shipSpeedX = 0;
+	private int shipSpeedX = 2;
 	private int shipSpeedY = 0;
 
 	private ImageView ship;
@@ -39,6 +40,7 @@ public class SpaceDodgers extends Application {
 	private ImageView enemy3;
 	private ImageView enemy4;
 	private ImageView enemy5;
+	private GameTimer timer;
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -114,7 +116,8 @@ public class SpaceDodgers extends Application {
 		enemy5.setX(0);
 		enemy5.setY(0);
 	
-		
+		 timer = new GameTimer();
+	        timer.start();
 		
 		Group root = new Group(back, menu, btnStop, btnStart, btnQuit, ship, enemy1, enemy2, enemy3, enemy4, enemy5);
 
@@ -169,7 +172,9 @@ public class SpaceDodgers extends Application {
 				shipSpeedY = 0;
 				shipSpeedX = 0;
 			}
+
 			if(ship.getX() < 15 || ship.getX() > 780 || ship.getY() < 15) {
+
 				shipSpeedX = 0;
 				shipSpeedY = 0;
 			}
