@@ -164,7 +164,14 @@ public class SpaceDodgers extends Application {
 			
 			Bounds shipBounds = ship.getBoundsInLocal();
 			Bounds menuBounds = menu.getBoundsInLocal();
+			Bounds enemy1Bounds = enemy1.getBoundsInLocal();
+			Bounds enemy2Bounds = enemy2.getBoundsInLocal();
+			Bounds enemy3Bounds = enemy3.getBoundsInLocal();
+			Bounds enemy4Bounds = enemy4.getBoundsInLocal();
+			Bounds enemy5Bounds = enemy5.getBoundsInLocal();
 
+			
+			
 			if(!(shipBounds.intersects(menuBounds)&&code == KeyCode.DOWN)){
 				ship.setX(ship.getX() + shipSpeedX);
 				ship.setY(ship.getY() + shipSpeedY);
@@ -173,10 +180,6 @@ public class SpaceDodgers extends Application {
 					shipSpeedY = 0;
 				}
 			
-//			if (shipBounds.intersects(menuBounds)) {
-//				shipSpeedY = 0;
-//				shipSpeedX = 0;
-//			}
 
 			if(ship.getX() < 15 || ship.getX() > 780 || ship.getY() < 15) {
 
