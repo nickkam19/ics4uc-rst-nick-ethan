@@ -27,10 +27,10 @@ public class SpaceDodgers extends Application {
 	private static final int SOUTH = -4;
 	private static final int EAST = 4;
 	private static final int WEST = -4;
-
+	private static final int ENEMY_SPEED = 7;
 	private int shipSpeedX = 2;
 	private int shipSpeedY = 0;
-
+	KeyCode code;
 	private ImageView ship;
 
 	private Rectangle menu;
@@ -132,7 +132,7 @@ public class SpaceDodgers extends Application {
 	}
 
 	public void keyPressed(KeyEvent event) {
-		KeyCode code = event.getCode();
+		code = event.getCode();
 
 		if (code == KeyCode.UP || code == KeyCode.W) {
 			shipSpeedY = NORTH;
@@ -162,16 +162,21 @@ public class SpaceDodgers extends Application {
 		@Override
 		public void handle(long now) {
 			
-			ship.setX(ship.getX() + shipSpeedX);
-			ship.setY(ship.getY() + shipSpeedY);
-
 			Bounds shipBounds = ship.getBoundsInLocal();
 			Bounds menuBounds = menu.getBoundsInLocal();
 
-			if (shipBounds.intersects(menuBounds)) {
-				shipSpeedY = 0;
-				shipSpeedX = 0;
-			}
+			if(!(shipBounds.intersects(menuBounds)&&code == KeyCode.DOWN)){
+				ship.setX(ship.getX() + shipSpeedX);
+				ship.setY(ship.getY() + shipSpeedY);
+				}else {
+					shipSpeedX = 0;
+					shipSpeedY = 0;
+				}
+			
+//			if (shipBounds.intersects(menuBounds)) {
+//				shipSpeedY = 0;
+//				shipSpeedX = 0;
+//			}
 
 			if(ship.getX() < 15 || ship.getX() > 780 || ship.getY() < 15) {
 
