@@ -16,8 +16,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-
-
 public class SpaceDodgers extends Application {
 
 	// defining global constants and variables
@@ -30,12 +28,11 @@ public class SpaceDodgers extends Application {
 	private static final int WEST = -4;
 	private int shipSpeedX = 0;
 
-	
-	private static  int enemy1Speed = 5;
-	private static  int enemy2Speed = 5;
-	private static  int enemy3Speed = 5;
-	private static  int enemy4Speed = 5;
-	private static  int enemy5Speed = 5;
+	private static int enemy1Speed = 5;
+	private static int enemy2Speed = 5;
+	private static int enemy3Speed = 5;
+	private static int enemy4Speed = 5;
+	private static int enemy5Speed = 5;
 
 	private int shipSpeedY = 0;
 	KeyCode code;
@@ -93,13 +90,12 @@ public class SpaceDodgers extends Application {
 		ship.setX(350);
 
 		URL enemyLocation1 = SpaceDodgers.class.getResource("Enemy.png");
-		
+
 		enemy1 = new ImageView(enemyLocation1.toString());
 		enemy1.setFitHeight(65);
 		enemy1.setFitWidth(65);
 		enemy1.setX(155);
 		enemy1.setY(0);
-		
 
 		enemy2 = new ImageView(enemyLocation1.toString());
 		enemy2.setFitHeight(65);
@@ -125,10 +121,8 @@ public class SpaceDodgers extends Application {
 		enemy5.setX(774);
 		enemy5.setY(0);
 
-		
-		 timer = new GameTimer();
-	        timer.start();
-		
+		timer = new GameTimer();
+		timer.start();
 
 		Group root = new Group(back, menu, btnStop, btnStart, btnQuit, ship, enemy1, enemy2, enemy3, enemy4, enemy5);
 
@@ -168,50 +162,49 @@ public class SpaceDodgers extends Application {
 		}
 	}
 
-		class GameTimer extends AnimationTimer {
-
+	class GameTimer extends AnimationTimer {
 
 		@Override
 		public void handle(long now) {
-			
 
-				Bounds shipBounds = ship.getBoundsInLocal();
-				Bounds menuBounds = menu.getBoundsInLocal();
-				Bounds enemy1Bounds = enemy1.getBoundsInLocal();
-				Bounds enemy2Bounds = enemy2.getBoundsInLocal();
-				Bounds enemy3Bounds = enemy3.getBoundsInLocal();
-				Bounds enemy4Bounds = enemy4.getBoundsInLocal();
-				Bounds enemy5Bounds = enemy5.getBoundsInLocal();
+			Bounds shipBounds = ship.getBoundsInLocal();
+			Bounds menuBounds = menu.getBoundsInLocal();
+			Bounds enemy1Bounds = enemy1.getBoundsInLocal();
+			Bounds enemy2Bounds = enemy2.getBoundsInLocal();
+			Bounds enemy3Bounds = enemy3.getBoundsInLocal();
+			Bounds enemy4Bounds = enemy4.getBoundsInLocal();
+			Bounds enemy5Bounds = enemy5.getBoundsInLocal();
+
+			if (shipBounds.intersects(menuBounds) && code == KeyCode.DOWN) {
+				shipSpeedX = 0;
+				shipSpeedY = 0;
+			}
+				if (enemy1.getX() <= 0 || enemy1.getX() >= 775) {
+					enemy1Speed = enemy1Speed * -1;
+				}
+				if (enemy2.getX() <= 0 || enemy2.getX() >= 775) {
+					enemy2Speed = enemy2Speed * -1;
+				}
+				if (enemy3.getX() <= 0 || enemy3.getX() >= 775) {
+					enemy3Speed = enemy3Speed * -1;
+				}
+				if (enemy4.getX() <= 0 || enemy4.getX() >= 775) {
+					enemy4Speed = enemy4Speed * -1;
+				}
+				if (enemy5.getX() <= 0 || enemy5.getX() >= 775) {
+					enemy5Speed = enemy5Speed * -1;
+				}
+				
+				
+				enemy1.setX(enemy1.getX() + enemy1Speed);
+				enemy2.setX(enemy2.getX() + enemy2Speed);
+				enemy3.setX(enemy3.getX() + enemy3Speed);
+				enemy4.setX(enemy4.getX() + enemy4Speed);
+				enemy5.setX(enemy5.getX() + enemy5Speed);
 
 				if (shipBounds.intersects(menuBounds) && code == KeyCode.DOWN) {
 					shipSpeedX = 0;
 					shipSpeedY = 0;
-		
-			if(enemy1.getX() <= 0 || enemy1.getX() >= 775) {
-				enemy1Speed = enemy1Speed*-1;
-			}
-			if(enemy2.getX() <= 0 || enemy2.getX() >= 775) {
-				enemy2Speed = enemy2Speed*-1;
-			}
-			if(enemy3.getX() <= 0|| enemy3.getX() >= 775) {
-				enemy3Speed = enemy3Speed*-1;
-			}
-			if(enemy4.getX() <= 0|| enemy4.getX() >= 775) {
-				enemy4Speed = enemy4Speed*-1;
-			}
-			if(enemy5.getX() <= 0|| enemy5.getX() >= 775) {
-				enemy5Speed = enemy5Speed*-1;
-			}
-			enemy1.setX(enemy1.getX() + enemy1Speed);
-			enemy2.setX(enemy2.getX() + enemy2Speed);
-			enemy3.setX(enemy3.getX() + enemy3Speed);
-			enemy4.setX(enemy4.getX() + enemy4Speed);
-			enemy5.setX(enemy5.getX() + enemy5Speed);
-			
-			if(shipBounds.intersects(menuBounds)  && code == KeyCode.DOWN){
-				shipSpeedX = 0;
-				shipSpeedY = 0;
-
 
 				} else {
 
@@ -231,16 +224,17 @@ public class SpaceDodgers extends Application {
 				if (ship.getY() <= 15 && code == KeyCode.UP) {
 					shipSpeedX = 0;
 					shipSpeedY = 0;
-//
-//					if (code == KeyCode.SPACE) {
-//						userShot = new Rectangle(ship.getX(), ship.getY(), 4, 20);
-//						userShot.setFill(Color.ALICEBLUE);
-//						userShot.setY(userShot.getY() + (-5));
-					//}
+				}
+					if (code == KeyCode.SPACE) {
+						userShot = new Rectangle(ship.getX(), ship.getY(), 4, 20);
+						userShot.setFill(Color.ALICEBLUE);
+					userShot.setY(userShot.getY() + (-5));
+					 }
 				}
 			}
-			
+
 		}
-	}
-}
+		
 	
+	
+
