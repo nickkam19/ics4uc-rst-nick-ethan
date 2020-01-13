@@ -38,15 +38,15 @@ public class SpaceDodgers extends Application {
 	KeyCode code;
 	private ImageView ship;
 
-	private Rectangle menu, userShot;
-
+	private Rectangle menu;
+	private Rectangle userShot;
 	private ImageView enemy1;
 	private ImageView enemy2;
 	private ImageView enemy3;
 	private ImageView enemy4;
 	private ImageView enemy5;
 	private GameTimer timer;
-
+Group root;
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		launch(args);
@@ -59,6 +59,9 @@ public class SpaceDodgers extends Application {
 
 		menu = new Rectangle(0, 700, 800, 100);
 		menu.setFill(Color.DARKGREY);
+		
+		userShot = new Rectangle(400, 400, 4, 40);
+		userShot.setFill(Color.BLUE);
 
 		Button btnStop = new Button("STOP");
 		btnStop.setFont(Font.font(SML));
@@ -124,7 +127,7 @@ public class SpaceDodgers extends Application {
 		timer = new GameTimer();
 		timer.start();
 
-		Group root = new Group(back, menu, btnStop, btnStart, btnQuit, ship, enemy1, enemy2, enemy3, enemy4, enemy5);
+		 root = new Group(back, menu, btnStop, btnStart, btnQuit, ship, enemy1, enemy2, enemy3, enemy4, enemy5, userShot);
 
 		Scene myScene = new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT);
 
@@ -151,6 +154,8 @@ public class SpaceDodgers extends Application {
 		if (code == KeyCode.RIGHT) {
 			shipSpeedX = EAST;
 		}
+	
+	
 	}
 
 	public void keyReleased(KeyEvent event) {
@@ -195,7 +200,10 @@ public class SpaceDodgers extends Application {
 					enemy5Speed = enemy5Speed * -1;
 				}
 				
-				
+				if(code != KeyCode.SHIFT) {
+				userShot.setY(userShot.getY() + (-5));
+				}
+
 				enemy1.setX(enemy1.getX() + enemy1Speed);
 				enemy2.setX(enemy2.getX() + enemy2Speed);
 				enemy3.setX(enemy3.getX() + enemy3Speed);
@@ -211,6 +219,14 @@ public class SpaceDodgers extends Application {
 					ship.setX(ship.getX() + shipSpeedX);
 					ship.setY(ship.getY() + shipSpeedY);
 				}
+				
+				if (code == KeyCode.SHIFT) {
+					
+					userShot.setX(ship.getX() + 40);
+					userShot.setY(ship.getY());
+					
+					
+					 }
 
 				if (ship.getX() <= 15 && code == KeyCode.LEFT) {
 
@@ -225,11 +241,7 @@ public class SpaceDodgers extends Application {
 					shipSpeedX = 0;
 					shipSpeedY = 0;
 				}
-					if (code == KeyCode.SPACE) {
-						userShot = new Rectangle(ship.getX(), ship.getY(), 4, 20);
-						userShot.setFill(Color.ALICEBLUE);
-					userShot.setY(userShot.getY() + (-5));
-					 }
+					
 				}
 			}
 
