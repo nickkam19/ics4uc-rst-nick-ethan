@@ -1,6 +1,7 @@
 package rst;
 
 import java.net.URL;
+import java.util.ArrayList;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -46,7 +47,9 @@ public class SpaceDodgers extends Application {
 	private ImageView enemy4;
 	private ImageView enemy5;
 	private GameTimer timer;
-
+int gameTime ;
+	static final String[]LazerLocs = { "lazer1.png, lazer2.png"};
+	ArrayList<ImageView>Lazer = new ArrayList<ImageView>();
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		launch(args);
@@ -163,10 +166,26 @@ public class SpaceDodgers extends Application {
 	}
 
 	class GameTimer extends AnimationTimer {
+		
+		long currentTime = 0;
+		long THRESHOLD = 1_000_000;
 
 		@Override
 		public void handle(long now) {
+			
+			if (now - currentTime > THRESHOLD) {
+				currentTime = now;
+				
+				String enemyShot = "enemy" + (Math.random()*5+1);
+				
+				
+				
+				
+				
+			}
 
+			gameTime = (int) (System.currentTimeMillis()/1000);
+			
 			Bounds shipBounds = ship.getBoundsInLocal();
 			Bounds menuBounds = menu.getBoundsInLocal();
 			Bounds enemy1Bounds = enemy1.getBoundsInLocal();
@@ -230,6 +249,12 @@ public class SpaceDodgers extends Application {
 				userShot.setFill(Color.ALICEBLUE);
 				userShot.setY(userShot.getY() + (-5));
 			}
+			
+			
+			
+			
+			
+			
 		}
 	}
 
