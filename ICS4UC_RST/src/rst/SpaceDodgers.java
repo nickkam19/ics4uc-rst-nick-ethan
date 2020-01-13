@@ -48,14 +48,14 @@ public class SpaceDodgers extends Application {
 	private ImageView enemy4;
 	private ImageView enemy5;
 	private GameTimer timer;
-<<<<<<< HEAD
-int gameTime ;
+
+	int gameTime ;
 	static final String[]LazerLocs = { "lazer1.png, lazer2.png"};
 	ArrayList<ImageView>Lazer = new ArrayList<ImageView>();
-=======
+
 	private Label lblTime;
 	Group root;
->>>>>>> branch 'master' of https://github.com/Spindler-ICS4UC-1-1920/ics4uc-rst-nick-and-ethan.git
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		launch(args);
@@ -87,21 +87,21 @@ int gameTime ;
 		btnQuit.setLayoutX(570);
 		btnQuit.setLayoutY(740);
 
-		URL backLocation = SpaceDodgers.class.getResource("StarBackl.jpg");
+		URL backLocation = SpaceDodgers.class.getResource("/StarBackl.jpg");
 		ImageView back = new ImageView(backLocation.toString());
 		back.setFitHeight(SCREEN_HEIGHT);
 		back.setFitWidth(SCREEN_WIDTH);
 		back.setX(0);
 		back.setY(0);
 
-		URL shipLocation = SpaceDodgers.class.getResource("SpaceShip8.png");
+		URL shipLocation = SpaceDodgers.class.getResource("/SpaceShip8.png");
 		ship = new ImageView(shipLocation.toString());
 		ship.setFitHeight(80);
 		ship.setFitWidth(80);
 		ship.setY(400);
 		ship.setX(350);
 
-		URL enemyLocation1 = SpaceDodgers.class.getResource("Enemy.png");
+		URL enemyLocation1 = SpaceDodgers.class.getResource("/Enemy.png");
 		
 		Label lblTimer = new Label("Time: ");
 		//lblTimer.setFont(Font.font(SML));
@@ -183,7 +183,7 @@ int gameTime ;
 	class GameTimer extends AnimationTimer {
 		
 		long currentTime = 0;
-		long THRESHOLD = 1_000_000;
+		long THRESHOLD = 5_000_000;
 
 		@Override
 		public void handle(long now) {
@@ -191,8 +191,20 @@ int gameTime ;
 			if (now - currentTime > THRESHOLD) {
 				currentTime = now;
 				
-				String enemyShot = "enemy" + (Math.random()*5+1);
+				String enemyShot = "enemy" + ((int)(Math.random()*5+1));
 				
+				String lazer = "lazer" + String.valueOf((int)(Math.random()*2+1)) + ".png";
+				
+				ImageView lazerAdd = new ImageView(lazer);
+				
+			lazerAdd.setX());
+				
+				Lazer.add(lazerAdd);
+				
+				
+				
+				
+				root.getChildren().add(Lazer.get(Lazer.size()-1));
 				
 				
 				
