@@ -1,5 +1,6 @@
 package rst;
 
+import java.awt.Label;
 import java.net.URL;
 
 import javafx.animation.AnimationTimer;
@@ -46,7 +47,8 @@ public class SpaceDodgers extends Application {
 	private ImageView enemy4;
 	private ImageView enemy5;
 	private GameTimer timer;
-Group root;
+	private Label lblTime;
+	Group root;
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		launch(args);
@@ -93,6 +95,10 @@ Group root;
 		ship.setX(350);
 
 		URL enemyLocation1 = SpaceDodgers.class.getResource("Enemy.png");
+		
+		Label lblTimer = new Label("Time: ");
+		//lblTimer.setFont(Font.font(SML));
+		lblTime = new Label("");
 
 		enemy1 = new ImageView(enemyLocation1.toString());
 		enemy1.setFitHeight(65);
