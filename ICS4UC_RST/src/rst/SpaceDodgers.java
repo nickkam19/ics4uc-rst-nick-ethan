@@ -1,5 +1,6 @@
 package rst;
 
+import java.awt.Label;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -39,17 +40,22 @@ public class SpaceDodgers extends Application {
 	KeyCode code;
 	private ImageView ship;
 
-	private Rectangle menu, userShot;
-
+	private Rectangle menu;
+	private Rectangle userShot;
 	private ImageView enemy1;
 	private ImageView enemy2;
 	private ImageView enemy3;
 	private ImageView enemy4;
 	private ImageView enemy5;
 	private GameTimer timer;
+<<<<<<< HEAD
 int gameTime ;
 	static final String[]LazerLocs = { "lazer1.png, lazer2.png"};
 	ArrayList<ImageView>Lazer = new ArrayList<ImageView>();
+=======
+	private Label lblTime;
+	Group root;
+>>>>>>> branch 'master' of https://github.com/Spindler-ICS4UC-1-1920/ics4uc-rst-nick-and-ethan.git
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		launch(args);
@@ -62,6 +68,9 @@ int gameTime ;
 
 		menu = new Rectangle(0, 700, 800, 100);
 		menu.setFill(Color.DARKGREY);
+		
+		userShot = new Rectangle(400, 400, 4, 40);
+		userShot.setFill(Color.BLUE);
 
 		Button btnStop = new Button("STOP");
 		btnStop.setFont(Font.font(SML));
@@ -93,6 +102,10 @@ int gameTime ;
 		ship.setX(350);
 
 		URL enemyLocation1 = SpaceDodgers.class.getResource("Enemy.png");
+		
+		Label lblTimer = new Label("Time: ");
+		//lblTimer.setFont(Font.font(SML));
+		lblTime = new Label("");
 
 		enemy1 = new ImageView(enemyLocation1.toString());
 		enemy1.setFitHeight(65);
@@ -127,7 +140,7 @@ int gameTime ;
 		timer = new GameTimer();
 		timer.start();
 
-		Group root = new Group(back, menu, btnStop, btnStart, btnQuit, ship, enemy1, enemy2, enemy3, enemy4, enemy5);
+		 root = new Group(back, menu, btnStop, btnStart, btnQuit, ship, enemy1, enemy2, enemy3, enemy4, enemy5, userShot);
 
 		Scene myScene = new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT);
 
@@ -154,6 +167,8 @@ int gameTime ;
 		if (code == KeyCode.RIGHT) {
 			shipSpeedX = EAST;
 		}
+	
+	
 	}
 
 	public void keyReleased(KeyEvent event) {
@@ -198,6 +213,66 @@ int gameTime ;
 				shipSpeedX = 0;
 				shipSpeedY = 0;
 			}
+
+				if (enemy1.getX() <= 0 || enemy1.getX() >= 775) {
+					enemy1Speed = enemy1Speed * -1;
+				}
+				if (enemy2.getX() <= 0 || enemy2.getX() >= 775) {
+					enemy2Speed = enemy2Speed * -1;
+				}
+				if (enemy3.getX() <= 0 || enemy3.getX() >= 775) {
+					enemy3Speed = enemy3Speed * -1;
+				}
+				if (enemy4.getX() <= 0 || enemy4.getX() >= 775) {
+					enemy4Speed = enemy4Speed * -1;
+				}
+				if (enemy5.getX() <= 0 || enemy5.getX() >= 775) {
+					enemy5Speed = enemy5Speed * -1;
+				}
+				
+				if(code != KeyCode.SHIFT) {
+				userShot.setY(userShot.getY() + (-5));
+				}
+
+				enemy1.setX(enemy1.getX() + enemy1Speed);
+				enemy2.setX(enemy2.getX() + enemy2Speed);
+				enemy3.setX(enemy3.getX() + enemy3Speed);
+				enemy4.setX(enemy4.getX() + enemy4Speed);
+				enemy5.setX(enemy5.getX() + enemy5Speed);
+
+				if (shipBounds.intersects(menuBounds) && code == KeyCode.DOWN) {
+					shipSpeedX = 0;
+					shipSpeedY = 0;
+
+				} else {
+
+					ship.setX(ship.getX() + shipSpeedX);
+					ship.setY(ship.getY() + shipSpeedY);
+				}
+				
+				if (code == KeyCode.SHIFT) {
+					
+					userShot.setX(ship.getX() + 40);
+					userShot.setY(ship.getY());
+					
+					
+					 }
+
+				if (ship.getX() <= 15 && code == KeyCode.LEFT) {
+
+					shipSpeedX = 0;
+					shipSpeedY = 0;
+				}
+				if (ship.getX() >= 780 && code == KeyCode.RIGHT) {
+					shipSpeedX = 0;
+					shipSpeedY = 0;
+				}
+				if (ship.getY() <= 15 && code == KeyCode.UP) {
+					shipSpeedX = 0;
+					shipSpeedY = 0;
+				}
+					
+
 			if (enemy1.getX() <= 0 || enemy1.getX() >= 775) {
 				enemy1Speed = enemy1Speed * -1;
 			}
@@ -212,6 +287,7 @@ int gameTime ;
 			}
 			if (enemy5.getX() <= 0 || enemy5.getX() >= 775) {
 				enemy5Speed = enemy5Speed * -1;
+
 			}
 
 			enemy1.setX(enemy1.getX() + enemy1Speed);
