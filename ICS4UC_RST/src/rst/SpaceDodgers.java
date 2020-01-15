@@ -16,6 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class SpaceDodgers extends Application {
@@ -35,6 +36,7 @@ public class SpaceDodgers extends Application {
 	private static int enemy3Speed = 5;
 	private static int enemy4Speed = 5;
 	private static int enemy5Speed = 5;
+	private int seconds;
 
 	private int shipSpeedY = 0;
 	KeyCode code;
@@ -48,14 +50,15 @@ public class SpaceDodgers extends Application {
 	private ImageView enemy4;
 	private ImageView enemy5;
 	private GameTimer timer;
-<<<<<<< HEAD
+	
+
 int gameTime ;
 	static final String[]LazerLocs = { "lazer1.png, lazer2.png"};
 	ArrayList<ImageView>Lazer = new ArrayList<ImageView>();
-=======
-	private Label lblTime;
+
+	private Text txtTime;
 	Group root;
->>>>>>> branch 'master' of https://github.com/Spindler-ICS4UC-1-1920/ics4uc-rst-nick-and-ethan.git
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		launch(args);
@@ -103,9 +106,13 @@ int gameTime ;
 
 		URL enemyLocation1 = SpaceDodgers.class.getResource("Enemy.png");
 		
-		Label lblTimer = new Label("Time: ");
-		//lblTimer.setFont(Font.font(SML));
-		lblTime = new Label("");
+		
+		
+		
+		txtTime = new Text("Time: ");
+		txtTime.setFont(Font.font(SML));
+		txtTime.setX(40);
+		txtTime.setY(780);
 
 		enemy1 = new ImageView(enemyLocation1.toString());
 		enemy1.setFitHeight(65);
@@ -140,7 +147,7 @@ int gameTime ;
 		timer = new GameTimer();
 		timer.start();
 
-		 root = new Group(back, menu, btnStop, btnStart, btnQuit, ship, enemy1, enemy2, enemy3, enemy4, enemy5, userShot);
+		 root = new Group(back, menu, btnStop, btnStart, btnQuit, ship, enemy1, enemy2, enemy3, enemy4, enemy5, userShot, txtTime);
 
 		Scene myScene = new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT);
 
@@ -183,13 +190,18 @@ int gameTime ;
 	class GameTimer extends AnimationTimer {
 		
 		long currentTime = 0;
-		long THRESHOLD = 1_000_000;
+		long THRESHOLD = 5_000_000;
 
 		@Override
 		public void handle(long now) {
 			
+			seconds = 0;
+			
 			if (now - currentTime > THRESHOLD) {
 				currentTime = now;
+				
+				seconds+=5;
+				txtTime.setText("Time: " + seconds);
 				
 				String enemyShot = "enemy" + (Math.random()*5+1);
 				
