@@ -33,9 +33,9 @@ public class ScoreBoard extends Application {
 	static final int SCREEN_HEIGHT = 850;
 	static final int SCREEN_WIDTH = 800;
 	static final int FONT_TITLE = 45;
-	static final int FONT_LARGE = 35;
-	static final int FONT_MED = 30;
-	static final int FONT_SMALL = 25;
+	static final int FONT_LARGE = 15;
+	static final int FONT_MED = 10;
+	static final int FONT_SMALL = 7;
 
 	Button btnAdd, btnSortAlpha;
 
