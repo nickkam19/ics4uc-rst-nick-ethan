@@ -16,6 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import simpleIO.Console;
 
@@ -61,7 +62,7 @@ public class SpaceDodgers extends Application {
 	
 	Boolean[] isAlive = new Boolean[5];
 	
-	private Label lblTime;
+	Text lblTimer;
 	
 	Group root;
 	
@@ -116,11 +117,11 @@ public class SpaceDodgers extends Application {
 		
 		URL enemyLocation1 = SpaceDodgers.class.getResource("/Enemy.png");
 		
-		Label lblTimer = new Label("Time: ");
+		lblTimer = new Text("Time: ");
+		lblTimer.setLayoutX(15);
+		lblTimer.setLayoutY(740);
 		
-		//lblTimer.setFont(Font.font(SML));
-		
-		lblTime = new Label("");
+	
 		
 		enemy1 = new ImageView(enemyLocation1.toString());
 		enemy1.setFitHeight(65);
@@ -169,7 +170,9 @@ public class SpaceDodgers extends Application {
 		timer.start();
 		
 		root = new Group(back, menu, btnStop, btnStart, btnQuit, ship, enemy1, enemy2, enemy3, enemy4, enemy5,
-				userShot);
+				userShot, lblTimer);
+		
+	
 		
 		for (int i = 0; i < 5; i++) {
 			
@@ -252,6 +255,7 @@ public class SpaceDodgers extends Application {
 						isAlive[i] = true;
 					}
 					currentTime = now;
+					lblTimer.setText("Time: " + currentTime);
 				}
 				
 			}
