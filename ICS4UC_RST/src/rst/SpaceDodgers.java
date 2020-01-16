@@ -68,7 +68,9 @@ public class SpaceDodgers extends Application {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
 		launch(args);
+		
 	}
 
 	@Override
@@ -169,8 +171,8 @@ public class SpaceDodgers extends Application {
 		timer = new GameTimer();
 		timer.start();
 		
-		root = new Group(back, menu, btnStop, btnStart, btnQuit, ship, enemy1, enemy2, enemy3, enemy4, enemy5,
-				userShot, lblTimer);
+		root = new Group(back, ship, enemy1, enemy2, enemy3, enemy4, enemy5,
+				userShot, menu, btnStop, btnStart, btnQuit, lblTimer);
 		
 	
 		
@@ -230,6 +232,7 @@ public class SpaceDodgers extends Application {
 	class GameTimer extends AnimationTimer {
 	
 		long currentTime = 0;
+		long time = 0;
 		
 		long THRESHOLD_MIN = 2_000_000;
 		
@@ -237,6 +240,13 @@ public class SpaceDodgers extends Application {
 
 		@Override
 		public void handle(long now) {
+			
+			currentTime += 1;
+			
+			if(currentTime%60 == 0) {
+				time++;
+			}
+			lblTimer.setText("Time: " + time);
 			
 			for (int i = 0; i < nextTimes.length; i++) {
 				
@@ -254,8 +264,7 @@ public class SpaceDodgers extends Application {
 					
 						isAlive[i] = true;
 					}
-					currentTime = now;
-					lblTimer.setText("Time: " + currentTime);
+					
 				}
 				
 			}
